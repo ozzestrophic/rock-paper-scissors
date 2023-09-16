@@ -8,12 +8,14 @@
 <body>
     <script>
         // call generate function
-        console.log(getComputerChoice());
+        let compChoice = getComputerChoice();
         //loop game function 5 times:        
 
-        // generate function:
+        // getComputerChoice generate function:
         function getComputerChoice () {
+            // generate random number 1-3
             let rndnum = Math.floor(Math.random() * 3) + 1;
+            // determine computer choice according to num
             if (rndnum === 1) {
                 return "rock";
             } else if (rndnum === 2) {
@@ -23,19 +25,26 @@
             }
             return rndnum;
         }
-            // generate random number 1-3
-            // determine computer choice according to num
+            
 
 
         // game function:
+        function playRound() {
             // prompt user for a choice
+            let userChoice = prompt("You choice?");
             // make it lower case for consistency
+            userChoice = userChoice.toLowerCase();
+
             // result = call check function
+            let result = check(userChoice, compChoice);
             // add to score array
+        }
+            
         
         
         //check function:
-        // handle all cases + if the word is not one of the 3 options
+        function check (userChoice, compChoice) {
+            // handle all cases + if the word is not one of the 3 options
         // if computer chooses rock:
             // if user chooses rock:
                 //..
@@ -44,6 +53,8 @@
         //..
 
         // return true or false
+        }
+        
     </script>
     
 </body>
