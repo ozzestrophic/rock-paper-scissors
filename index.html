@@ -9,7 +9,11 @@
     <script>
         // call generate function
         let compChoice = getComputerChoice();
+        console.log(compChoice);
+        playRound();
         //loop game function 5 times:        
+
+
 
         // getComputerChoice generate function:
         function getComputerChoice () {
@@ -25,18 +29,28 @@
             }
             return rndnum;
         }
-            
 
 
         // game function:
         function playRound() {
             // prompt user for a choice
             let userChoice = prompt("You choice?");
+            if (!userChoice) {
+                console.log('no input!');
+                return;
+            }
             // make it lower case for consistency
             userChoice = userChoice.toLowerCase();
+            // handle all cases + if the word is not one of the 3 options
+            if (!(['paper', 'rock', 'scissors'].includes(userChoice))) {
+                console.log("not an option!")
+                return;
+            }
+            
 
             // result = call check function
             let result = check(userChoice, compChoice);
+            console.log(result);
             // add to score array
         }
             
@@ -44,17 +58,45 @@
         
         //check function:
         function check (userChoice, compChoice) {
-            // handle all cases + if the word is not one of the 3 options
+            
         // if computer chooses rock:
-            // if user chooses rock:
-                //..
-            // if user chooses paper:
-                //..
+        if (compChoice === "rock") {
+            if (userChoice === "rock") {
+                console.log("You both Rock!! Draw")
+                return 3;
+            } else if (userChoice === 'paper') {
+                console.log("Paper beats Rock!! you won")
+                return 1;
+            } else if (userChoice === 'scissors') {
+                console.log('scissors got broken!')
+                return 2;
+            }
+        } else if (compChoice === "scissors") {
+            if (userChoice === "rock") {
+                console.log("Rock beats scissors!")
+                return 1;
+            } else if (userChoice === 'paper') {
+                console.log("Paper got torn!")
+                return 2;
+            } else if (userChoice === 'scissors') {
+                console.log('2 scissors! wink')
+                return 3;
+            }
         //..
-
-        // return true or false
+        } else if (compChoice === "paper") {
+            if (userChoice === "rock") {
+                console.log("Rock got covered!")
+                return 2;
+            } else if (userChoice === 'paper') {
+                console.log("2 papers! you should write a thesis")
+                return 3;
+            } else if (userChoice === 'scissors') {
+                console.log('Scissors cut paper!')
+                return 1;
+            }
         }
-        
+        }
+        // return true or false
     </script>
     
 </body>
