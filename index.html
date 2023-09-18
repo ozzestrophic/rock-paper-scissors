@@ -92,16 +92,14 @@
 
         }
 
-        // game function:
         function playRound(e) {
             let compChoice = getComputerChoice();
             console.log(compChoice);
-            // prompt user for a choice
+
             let userChoice = this.id;
             console.log(this.id);
             compPara.textContent = `The computer chose: ${compChoice}`;
 
-            // result = call check function
             let result = check(userChoice, compChoice);
             calculateScore(result);
             console.log(result);
@@ -132,7 +130,6 @@
         }
         
         
-        //check function:
         function check (userChoice, compChoice) {
             
             // if computer chooses rock:
@@ -172,7 +169,6 @@
                 }
             }
         }
-        // return true or false
     </script>
     
 </body>
