@@ -9,14 +9,16 @@
 <body>
 
     <div id="wrapper">
+        <h1>Play 5 rounds of "Rock, Paper, Scissors" against the computer</h1>
         <div id="btns">
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissors">Scissors</button>
+            <button class="btn" id="rock">Rock</button>
+            <button class="btn" id="paper">Paper</button>
+            <button class="btn" id="scissors">Scissors</button>
         </div>
     
         <div class="results">
-            <p id="compPara">The computer chose:</p>
+            <p id="compPara"></p>
+            <p id="roundResult"></p>
             <div id="scores">
                 <div class ="score">
                     <h5>You:</h5>
@@ -26,9 +28,11 @@
                     <h5>Computer:</h5>
                     <h4 id="compScore">0</h4>
                 </div>
-                <h2 id="final"></h2>
 
             </div>
+            <h2 id="final"></h2>
+            <button id="reset">Reset</button>
+
             
 
         </div>
@@ -57,11 +61,14 @@
         const rock = document.querySelector("#rock");
         const paper = document.querySelector("#paper");
         const scissors = document.querySelector("#scissors");
-        const btns = document.querySelectorAll("button");
+        const btns = document.querySelectorAll(".btn");
         const compPara = document.querySelector("#compPara");
         const userPara = document.querySelector("#userPara");
         const userScorePara = document.querySelector("#userScore");
         const compScorePara = document.querySelector("#compScore");
+        const finalResult = document.querySelector("#final");
+        const roundResult = document.querySelector("#roundResult");
+        const resetBtn = document.querySelector("#reset");
 
 
         let userScore = 0;
@@ -70,7 +77,20 @@
 
         // event Listeners
         btns.forEach(btn => btn.addEventListener('click', playRound));
+        resetBtn.addEventListener('click', resetGame);
 
+        function resetGame() {
+            userScore = 0;
+            userScorePara.textContent = userScore;
+            compScore = 0;
+            compScorePara.textContent = compScore;
+            compPara.textContent = "";
+            finalResult.textContent = "";
+            roundResult.textContent = "";
+            btns.forEach(btn => btn.toggleAttribute("disabled", false));
+
+
+        }
 
         // game function:
         function playRound(e) {
@@ -100,6 +120,15 @@
             }
 
             // if anyone reach 5 delcare winner
+            if (userScore === 5) {
+                finalResult.textContent = "You Won yabnella3eeba!"
+                btns.forEach(btn => btn.setAttribute("disabled", true));
+            } else if (compScore === 5) {
+                finalResult.textContent = "3ayel fashel!"
+                btns.forEach(btn => btn.setAttribute("disabled", true));
+
+
+            }
         }
         
         
@@ -109,36 +138,36 @@
             // if computer chooses rock:
             if (compChoice === "rock") {
                 if (userChoice === "rock") {
-                    console.log("You both Rock!! Draw")
+                    roundResult.textContent = "You both Rock!!";
                     return "draw";
                 } else if (userChoice === 'paper') {
-                    console.log("Paper beats Rock!! you won")
+                    roundResult.textContent = "Paper beats Rock!!";
                     return "won";
                 } else if (userChoice === 'scissors') {
-                    console.log('scissors got broken!')
+                    roundResult.textContent = 'Scissors got broken!';
                     return "lost";
                 }
             } else if (compChoice === "scissors") {
                 if (userChoice === "rock") {
-                    console.log("Rock beats scissors!")
+                    roundResult.textContent = "Rock beats scissors!";
                     return "won";
                 } else if (userChoice === 'paper') {
-                    console.log("Paper got torn!")
+                    roundResult.textContent = "Paper got torn!";
                     return "lost";
                 } else if (userChoice === 'scissors') {
-                    console.log('2 scissors! wink')
+                    roundResult.textContent = '2 scissors! *Wink*';
                     return "draw";
                 }
             //..
             } else if (compChoice === "paper") {
                 if (userChoice === "rock") {
-                    console.log("Rock got covered!")
+                    roundResult.textContent = "Rock got covered!";
                     return "lost";
                 } else if (userChoice === 'paper') {
-                    console.log("2 papers! you should write a thesis")
+                    roundResult.textContent = "2 papers! you should write a thesis";
                     return "draw";
                 } else if (userChoice === 'scissors') {
-                    console.log('Scissors cut paper!')
+                    roundResult.textContent = 'Scissors cut paper!';
                     return "won";
                 }
             }
