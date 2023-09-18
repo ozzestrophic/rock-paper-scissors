@@ -4,15 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script>
-        // call generate function
-        
-        game();
-        //loop game function 5 times:        
 
+    <div id="wrapper">
+        <div id="btns">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+    
+        <div class="results">
+            <p id="compPara"></p>
+            <p id="userPara"></p>
+            <h3></h3>
+        </div>
+    </div>
+    
+    
 
+    <script> 
 
         // getComputerChoice generate function:
         function getComputerChoice () {
@@ -29,25 +41,29 @@
             return rndnum;
         }
 
+        // register DOM objects
+        const rock = document.querySelector("#rock");
+        const paper = document.querySelector("#paper");
+        const scissors = document.querySelector("#scissors");
+        const btns = document.querySelectorAll("button");
+        const compPara = document.querySelector("#compPara");
+        const userPara = document.querySelector("#userPara");
+
+
+
+        // event Listeners
+        btns.forEach(btn => btn.addEventListener('click', playRound));
+
 
         // game function:
-        function playRound() {
+        function playRound(e) {
             let compChoice = getComputerChoice();
             console.log(compChoice);
             // prompt user for a choice
-            let userChoice = prompt("You choice?");
-            if (!userChoice) {
-                console.log('no input!');
-                return;
-            }
-            // make it lower case for consistency
-            userChoice = userChoice.toLowerCase();
-            // handle all cases + if the word is not one of the 3 options
-            if (!(['paper', 'rock', 'scissors'].includes(userChoice))) {
-                console.log("not an option!")
-                return;
-            }
-            
+            let userChoice = this.id;
+            console.log(this.id);
+            compPara.textContent = `The computer chose: ${compChoice}`;
+            userPara.textContent = `You chose: ${userChoice}`;
 
             // result = call check function
             let result = check(userChoice, compChoice);
@@ -85,42 +101,42 @@
         //check function:
         function check (userChoice, compChoice) {
             
-        // if computer chooses rock:
-        if (compChoice === "rock") {
-            if (userChoice === "rock") {
-                console.log("You both Rock!! Draw")
-                return 3;
-            } else if (userChoice === 'paper') {
-                console.log("Paper beats Rock!! you won")
-                return 1;
-            } else if (userChoice === 'scissors') {
-                console.log('scissors got broken!')
-                return 2;
+            // if computer chooses rock:
+            if (compChoice === "rock") {
+                if (userChoice === "rock") {
+                    console.log("You both Rock!! Draw")
+                    return 3;
+                } else if (userChoice === 'paper') {
+                    console.log("Paper beats Rock!! you won")
+                    return 1;
+                } else if (userChoice === 'scissors') {
+                    console.log('scissors got broken!')
+                    return 2;
+                }
+            } else if (compChoice === "scissors") {
+                if (userChoice === "rock") {
+                    console.log("Rock beats scissors!")
+                    return 1;
+                } else if (userChoice === 'paper') {
+                    console.log("Paper got torn!")
+                    return 2;
+                } else if (userChoice === 'scissors') {
+                    console.log('2 scissors! wink')
+                    return 3;
+                }
+            //..
+            } else if (compChoice === "paper") {
+                if (userChoice === "rock") {
+                    console.log("Rock got covered!")
+                    return 2;
+                } else if (userChoice === 'paper') {
+                    console.log("2 papers! you should write a thesis")
+                    return 3;
+                } else if (userChoice === 'scissors') {
+                    console.log('Scissors cut paper!')
+                    return 1;
+                }
             }
-        } else if (compChoice === "scissors") {
-            if (userChoice === "rock") {
-                console.log("Rock beats scissors!")
-                return 1;
-            } else if (userChoice === 'paper') {
-                console.log("Paper got torn!")
-                return 2;
-            } else if (userChoice === 'scissors') {
-                console.log('2 scissors! wink')
-                return 3;
-            }
-        //..
-        } else if (compChoice === "paper") {
-            if (userChoice === "rock") {
-                console.log("Rock got covered!")
-                return 2;
-            } else if (userChoice === 'paper') {
-                console.log("2 papers! you should write a thesis")
-                return 3;
-            } else if (userChoice === 'scissors') {
-                console.log('Scissors cut paper!')
-                return 1;
-            }
-        }
         }
         // return true or false
     </script>

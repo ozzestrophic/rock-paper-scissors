@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(223, 214, 214);
+}
+
+#wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+#btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+button {
+    background-color: orange;
+
+    height: 100px;
+    width: 100px;
+}
